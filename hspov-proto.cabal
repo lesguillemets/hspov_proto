@@ -19,7 +19,9 @@ Flag buildExamples
 
 library
   exposed-modules:     Data.Povray
+                     , Data.Povray.Base
                      , Data.Povray.Types
+                     , Data.Povray.Camera
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.8 && <4.9

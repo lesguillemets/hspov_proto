@@ -2,7 +2,7 @@ module Data.Povray.Types where
 
 import Data.List
 
-type Str = String -- may change to ByteString or Text
+import Data.Povray.Base
 
 data Vector a = V a a a
 type Vect = Vector Double
@@ -30,8 +30,8 @@ instance Num a => Num (Vector a) where
     fromInteger n = fromIntegral <$> V n n n
     signum = fmap signum
 
-instance (Show a) => Show (Vector a) where
-    show v = '<' : (intercalate ", " . map show . toList) v ++ ">"
+instance (Show a) => Povray (Vector a) where
+    toPov v = '<' : (intercalate ", " . map show . toList) v ++ ">"
 -- |
 -- >>> show (V 0 1 2)
 -- "<0, 1, 2>"
