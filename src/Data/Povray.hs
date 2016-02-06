@@ -7,4 +7,4 @@ import Data.Povray.Texture
 import Data.Povray.Transformation
 
 include :: Str -> IO ()
-include = putStrLn . ("#include " ++) . show
+include = putStrLn . ("#include " `mappend`) . show

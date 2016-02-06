@@ -1,5 +1,7 @@
 module Data.Povray.Camera where
 
+import Data.Monoid
+
 import Data.Povray.Types
 import Data.Povray.Base
 
@@ -11,6 +13,6 @@ data Camera = Camera {
 instance Povray Camera where
     toPov (Camera loc at) = join [
         "camera {",
-        "location " ++ toPov loc,
-        "look_at" ++ toPov loc
+        "location " `mappend` toPov loc,
+        "look_at" `mappend` toPov loc
         ]

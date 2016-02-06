@@ -1,6 +1,7 @@
 module Data.Povray.Types where
 
 import Data.List
+import Data.Monoid
 
 import Data.Povray.Base
 
@@ -31,7 +32,7 @@ instance Num a => Num (Vector a) where
     signum = fmap signum
 
 instance (Show a) => Povray (Vector a) where
-    toPov v = '<' : (intercalate ", " . map show . toList) v ++ ">"
+    toPov v = '<' : (intercalate ", " . map show . toList) v `mappend` ">"
 -- |
 -- >>> show (V 0 1 2)
 -- "<0, 1, 2>"

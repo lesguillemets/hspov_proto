@@ -10,6 +10,7 @@ import Data.Povray.Transformation
 import Data.Povray.ObjectModifiers
 
 import Data.Maybe
+import Data.Monoid
 
 data Object = Box { _nll :: Vect, -- near lower left
                     _fur :: Vect, -- far upper right
@@ -84,13 +85,13 @@ instance Povray Object where
         ]
     toPov (Union os m) = unlines (
         "union { ": map toPov os
-                                      ) ++ toPov m ++ "\n}"
+                                      ) `mappend` toPov m `mappend` "\n}"
     toPov (Intersection os m) = unlines (
         "intersection { ": map toPov os
-                                      ) ++ toPov m ++ "\n}"
+                                      ) `mappend` toPov m `mappend` "\n}"
     toPov (Difference os m) = unlines (
         "difference { ": map toPov os
-                                      ) ++ toPov m ++ "\n}"
+                                      ) `mappend` toPov m `mappend` "\n}"
     toPov (Merge os m) = unlines (
         "merge { ": map toPov os
-                                      ) ++ toPov m ++ "\n}"
+                                      ) `mappend` toPov m `mappend` "\n}"

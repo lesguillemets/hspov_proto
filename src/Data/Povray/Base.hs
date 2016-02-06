@@ -1,4 +1,5 @@
 module Data.Povray.Base where
+import Data.Monoid
 
 type Str = String -- may change to ByteString or Text
 
@@ -10,5 +11,5 @@ class Povray a where
 
 formComment :: Str -> Str
 formComment c = let cs = lines c in
-                if length cs == 1 then "// " ++ c
-                                  else "/*\n" ++ c ++ "\n*/"
+                if length cs == 1 then "// " `mappend` c
+                                  else "/*\n" `mappend` c `mappend` "\n*/"
