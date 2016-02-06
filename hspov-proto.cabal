@@ -22,8 +22,13 @@ library
                      , Data.Povray.Base
                      , Data.Povray.Types
                      , Data.Povray.Camera
+                     , Data.Povray.Objects
+                     , Data.Povray.ObjectModifiers
+                     , Data.Povray.Texture
+                     , Data.Povray.Transformation
   -- other-modules:       
-  -- other-extensions:    
+  other-extensions:    DisambiguateRecordFields
+                     , RecordWildCards
   build-depends:       base >=4.8 && <4.9
   hs-source-dirs:      src
   default-language:    Haskell2010

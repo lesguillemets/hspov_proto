@@ -35,3 +35,5 @@ instance (Show a) => Povray (Vector a) where
 -- |
 -- >>> show (V 0 1 2)
 -- "<0, 1, 2>"
+
+instance Povray Double where toPov = show

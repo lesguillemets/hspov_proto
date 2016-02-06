@@ -7,3 +7,8 @@ join = unlines . filter (not . null)
 
 class Povray a where
     toPov :: a -> Str
+
+formComment :: Str -> Str
+formComment c = let cs = lines c in
+                if length cs == 1 then "// " ++ c
+                                  else "/*\n" ++ c ++ "\n*/"
