@@ -1,0 +1,7 @@
+cabal.sandbox.config
+.cabal-sandbox/
+dist/
+*.json
+.*.sw[pqro]
+*.hi
+*.o

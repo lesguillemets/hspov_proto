@@ -1,0 +1,36 @@
+name:                hspov-proto
+version:             0.0.1
+-- synopsis:            
+-- description:         
+homepage:            https://github.com/lesguillemets/hspov-proto
+license:             BSD3
+license-file:        LICENSE
+author:              lesguillemets
+maintainer:          kgkacko+github@gmail.com
+-- copyright:           
+-- category:            
+build-type:          Simple
+-- extra-source-files:  
+cabal-version:       >=1.10
+
+Flag buildExamples
+  description: Build example executables
+  default:     True
+
+library
+  exposed-modules:     Data.Povray
+  -- other-modules:       
+  -- other-extensions:    
+  build-depends:       base >=4.8 && <4.9
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+Executable example
+  If flag(buildExamples)
+    Buildable: True
+  Else
+    Buildable: False
+  Hs-Source-Dirs: examples
+  build-depends:       base >=4.8 && <4.9
+                     , hspov-proto
+  Main-Is: Example.hs
