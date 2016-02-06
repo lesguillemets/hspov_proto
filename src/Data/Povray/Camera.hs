@@ -9,7 +9,7 @@ data Camera = Camera {
 }
 
 instance Povray Camera where
-    toPov (Camera loc at) = unlines [
+    toPov (Camera loc at) = join [
         "camera {",
         "location " ++ toPov loc,
         "look_at" ++ toPov loc
