@@ -1,3 +1,4 @@
 import Data.Povray
 
-main = return ()
+main = do
+    include "colors.inc"
