@@ -9,4 +9,4 @@ import Data.Povray.Transformation
 main = do
     include "colors.inc"
     putStrLn . toPov $ Box (V 0 2 3) (V 3 5 10)  $
-                    OModify Nothing (Just $ Transformation "f") (Just "COMMO")
+                    OModify Nothing (Just $ Translate (V 0 0 2)) (Just "COMMO")
