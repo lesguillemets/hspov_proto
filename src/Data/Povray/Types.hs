@@ -37,8 +37,6 @@ instance (Show a) => Povray (Vector a) where
 -- >>> toPov (V 0 1 2)
 -- "<0, 1, 2>"
 
-instance Povray Double where toPov = show
-
 data Vector4 a = V4 a a a a
 type Vect4 = Vector Double
 

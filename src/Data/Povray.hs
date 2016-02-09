@@ -8,3 +8,6 @@ import Data.Povray.Transformation
 
 include :: Str -> IO ()
 include = putStrLn . ("#include " `mappend`) . show
+
+put :: Povray a => a -> IO ()
+put = putStrLn . toPov
