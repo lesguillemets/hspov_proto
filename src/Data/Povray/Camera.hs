@@ -14,5 +14,6 @@ instance Povray Camera where
     toPov (Camera loc at) = join [
         "camera {",
         "location " `mappend` toPov loc,
-        "look_at" `mappend` toPov loc
+        "look_at " `mappend` toPov at,
+        "}"
         ]
