@@ -23,6 +23,7 @@ library
                      , Data.Povray.Types
                      , Data.Povray.Camera
                      , Data.Povray.Colour
+                     , Data.Povray.Light
                      , Data.Povray.Objects
                      , Data.Povray.ObjectModifiers
                      , Data.Povray.Texture
