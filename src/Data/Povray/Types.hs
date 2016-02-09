@@ -34,7 +34,7 @@ instance Num a => Num (Vector a) where
 instance (Show a) => Povray (Vector a) where
     toPov v = '<' : (intercalate ", " . map show . toList) v `mappend` ">"
 -- |
--- >>> show (V 0 1 2)
+-- >>> toPov (V 0 1 2)
 -- "<0, 1, 2>"
 
 instance Povray Double where toPov = show
