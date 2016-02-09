@@ -6,6 +6,8 @@ import Data.Povray.Colour
 import Data.Povray.Light
 import Data.Povray.Objects
 import Data.Povray.ObjectModifiers
+import Data.Povray.Pigment
+import Data.Povray.Material
 import Data.Povray.Texture
 import Data.Povray.Transformation
 
@@ -34,6 +36,12 @@ efloorTexture = Texture (Just echeck) (Just (Phong 0.1))
 efloor :: Object
 efloor = Plane (V 0 1 0) 0 (emptyModifier {_texture = Just efloorTexture})
 
+mglass :: Material
+mglass = NamedMaterial "M_Glass"
+
+glassSp :: Object
+glassSp = Sphere (V (-1) (-1) (-1)) 2 (emptyModifier {_material=Just mglass})
+
 camera :: Camera
 camera = Camera (V 2 9 10) o
 
@@ -46,7 +54,9 @@ lights = [
 main = do
     include "colors.inc"
     include "textures.inc"
+    include "glass.inc"
     put camera
     put efloor
     put box
+    put glassSp
     mapM_ put lights
