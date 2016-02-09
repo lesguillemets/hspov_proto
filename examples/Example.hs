@@ -13,34 +13,34 @@ import Data.Povray.Transformation
 
 o :: Vect
 o = V 0 0 0
-ecolor :: Colour
-ecolor = RGB (V 0 0.8 1.5)
+v :: Vect
+v = V 1 1 1
+eColor :: Colour
+eColor = RGB (V 0 0.8 1.5)
 white = RGB (V 1 1 1)
 black = RGB (V 0 0 0)
 
-epig :: Pigment
-epig = emptyPigment {_color = Just ecolor}
-eglass :: Pigment
-eglass = emptyPigment {_named = Just (Named "M_Glass3")}
-echeck :: Pigment
-echeck = emptyPigment {_named = Just (Checker (Just white) (Just black))}
+ePig :: Pigment
+ePig = emptyPigment {_color = Just eColor}
+eCheck :: Pigment
+eCheck = emptyPigment {_named = Just (Checker (Just white) (Just black))}
 
-etexture :: Texture
-etexture = Texture (Just epig) (Just (Phong 0.5))
+eTexture :: Texture
+eTexture = Texture (Just ePig) (Just (Phong 0.5))
 box :: Object
-box = Box o (V 1 1 1) (emptyModifier {_texture = Just etexture})
+box = Box o (V 1 1 1) (emptyModifier {_texture = Just eTexture})
 
 
-efloorTexture :: Texture
-efloorTexture = Texture (Just echeck) (Just (Phong 0.1))
-efloor :: Object
-efloor = Plane (V 0 1 0) 0 (emptyModifier {_texture = Just efloorTexture})
+eFloorTexture :: Texture
+eFloorTexture = Texture (Just eCheck) (Just (Phong 0.1))
+eFloor :: Object
+eFloor = Plane (V 0 1 0) 0 (emptyModifier {_texture = Just eFloorTexture})
 
-mglass :: Material
-mglass = NamedMaterial "M_Glass"
+mGlass :: Material
+mGlass = NamedMaterial "M_Glass"
 
 glassSp :: Object
-glassSp = Sphere (V (-1) (-1) (-1)) 2 (emptyModifier {_material=Just mglass})
+glassSp = Sphere (negate v) 2 (emptyModifier {_material=Just mGlass})
 
 camera :: Camera
 camera = Camera (V 2 9 10) o
@@ -56,7 +56,7 @@ main = do
     include "textures.inc"
     include "glass.inc"
     put camera
-    put efloor
+    put eFloor
     put box
     put glassSp
     mapM_ put lights
