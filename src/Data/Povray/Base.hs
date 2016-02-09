@@ -1,6 +1,8 @@
 {-# LANGUAGE FlexibleInstances #-}
 module Data.Povray.Base where
 import Data.Monoid
+import Data.Maybe
+import Control.Monad (liftM)
 
 type Str = String -- may change to ByteString or Text
 
@@ -9,6 +11,9 @@ join = unlines . filter (not . null)
 
 class Povray a where
     toPov :: a -> Str
+
+maybeToPov :: Povray a => Maybe a -> Str
+maybeToPov = fromMaybe "" . liftM toPov
 
 formComment :: Str -> Str
 formComment c = let cs = lines c in

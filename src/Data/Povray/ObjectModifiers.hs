@@ -21,7 +21,7 @@ emptyModifier = OModify Nothing Nothing Nothing
 
 instance Povray ObjectModifier where
     toPov (m@OModify{..}) = join [
-        fromMaybe "" $ toPov <$> _texture,
-        fromMaybe "" $ toPov <$> _trans,
-        fromMaybe "" $ formComment <$> _comment
+        maybeToPov _texture,
+        maybeToPov _trans,
+        maybeToPov _comment
         ]

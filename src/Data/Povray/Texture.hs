@@ -19,8 +19,8 @@ emptyPigment = Pigment Nothing Nothing
 instance Povray Pigment where
     toPov (p@Pigment{..}) =
         case join [
-                fromMaybe "" $ toPov <$> _color,
-                fromMaybe "" $ toPov <$> _named
+                maybeToPov _color,
+                maybeToPov _named
                 ] of
                     "" -> ""
                     s -> join ["pigment {", s, "}"]
@@ -31,8 +31,8 @@ data NamedPigment = Checker (Maybe Colour) (Maybe Colour)
 instance Povray NamedPigment where
     toPov (Checker c0 c1) =
         join [ "checker",
-               fromMaybe "" $ toPov <$> c0,
-               fromMaybe "" $ toPov <$> c1
+               maybeToPov c0,
+               maybeToPov c1
             ]
     toPov (Named s) = s
 
@@ -55,8 +55,8 @@ instance Povray Texture where
     toPov (Texture p f) =
         join [
             "texture {",
-            fromMaybe "" $ toPov <$> p,
-            fromMaybe "" $ toPov <$> f,
+            maybeToPov p,
+            maybeToPov f,
             "}"
             ]
     toPov (NamedTexture n) = "texture {" `mappend` n `mappend` "}"
