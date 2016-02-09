@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 module Data.Povray.Base where
 import Data.Monoid
 
@@ -13,3 +14,6 @@ formComment :: Str -> Str
 formComment c = let cs = lines c in
                 if length cs == 1 then "// " `mappend` c
                                   else "/*\n" `mappend` c `mappend` "\n*/"
+
+instance Povray Double where toPov = show
+instance Povray [Char] where toPov = show
