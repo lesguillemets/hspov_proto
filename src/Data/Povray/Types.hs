@@ -38,3 +38,53 @@ instance (Show a) => Povray (Vector a) where
 -- "<0, 1, 2>"
 
 instance Povray Double where toPov = show
+
+data Vector4 a = V4 a a a a
+type Vect4 = Vector Double
+
+instance Functor Vector4 where
+    fmap f (V4 p q r s) = V4 (f p) (f q) (f r) (f s)
+
+instance Applicative Vector4 where
+    pure x = V4 x x x x
+    (V4 f0 f1 f2 f3) <*>  (V4 x y z w) = V4 (f0 x) (f1 y) (f2 z) (f3 w)
+
+instance Foldable Vector4 where
+    foldMap f (V4 x y z w) = mconcat [f x, f y, f z, f w]
+
+instance Num a => Num (Vector4 a) where
+    v0 + v1 = (+) <$> v0 <*> v1
+    negate = fmap negate
+    v0 * v1 = (*) <$> v0 <*> v1
+    abs = fmap abs
+    fromInteger = pure . fromIntegral
+    signum = fmap signum
+
+instance (Show a) => Povray (Vector4 a) where
+    toPov v = '<' : (intercalate ", " . map show . foldr (:) []) v `mappend` ">"
+
+
+data Vector5 a = V5 a a a a a
+type Vect5 = Vector Double
+
+instance Functor Vector5 where
+    fmap f (V5 p q r s t) = V5 (f p) (f q) (f r) (f s) (f t)
+
+instance Applicative Vector5 where
+    pure x = V5 x x x x x
+    (V5 f0 f1 f2 f3 f4) <*>  (V5 x y z w v)
+        = V5 (f0 x) (f1 y) (f2 z) (f3 w) (f4 v)
+
+instance Foldable Vector5 where
+    foldMap f (V5 x y z w v) = mconcat [f x, f y, f z, f w, f v]
+
+instance Num a => Num (Vector5 a) where
+    v0 + v1 = (+) <$> v0 <*> v1
+    negate = fmap negate
+    v0 * v1 = (*) <$> v0 <*> v1
+    abs = fmap abs
+    fromInteger = pure . fromIntegral
+    signum = fmap signum
+
+instance (Show a) => Povray (Vector5 a) where
+    toPov v = '<' : (intercalate ", " . map show . foldr (:) []) v `mappend` ">"
