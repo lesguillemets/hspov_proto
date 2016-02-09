@@ -28,7 +28,7 @@ instance Num a => Num (Vector a) where
     negate = fmap negate
     v0 * v1 = (*) <$> v0 <*> v1
     abs = fmap abs
-    fromInteger n = fromIntegral <$> V n n n
+    fromInteger = pure . fromIntegral
     signum = fmap signum
 
 instance (Show a) => Povray (Vector a) where
