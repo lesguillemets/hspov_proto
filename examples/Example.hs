@@ -43,7 +43,7 @@ glassSp :: Object
 glassSp = Sphere (negate v) 2 (emptyModifier {_material=Just mGlass})
 
 camera :: Camera
-camera = Camera (V 2 9 10) o
+camera = Camera (V 2 9 10) o Nothing (Just (V 0 0.1 0))
 
 lights :: [Light]
 lights = [
