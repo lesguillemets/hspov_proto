@@ -10,7 +10,6 @@ import Data.Povray.Transformation
 import Data.Povray.ObjectModifiers
 
 import Data.Maybe
-import Data.Monoid
 
 data Object = Box { _nll :: Vect, -- near lower left
                     _fur :: Vect, -- far upper right

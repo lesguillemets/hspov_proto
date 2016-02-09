@@ -1,6 +1,5 @@
 {-# LANGUAGE FlexibleInstances #-}
 module Data.Povray.Base where
-import Data.Monoid
 import Data.Maybe
 import Control.Monad (liftM)
 

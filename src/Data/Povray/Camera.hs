@@ -1,7 +1,5 @@
 module Data.Povray.Camera where
 
-import Data.Monoid
-
 import Data.Povray.Types
 import Data.Povray.Base
 

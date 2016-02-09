@@ -1,7 +1,6 @@
 module Data.Povray.Types where
 
 import Data.List
-import Data.Monoid
 
 import Data.Povray.Base
 
