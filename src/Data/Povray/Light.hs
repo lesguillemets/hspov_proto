@@ -47,17 +47,17 @@ instance Povray LightKind where
         = join [
             "spotlight",
             "point_at " `mappend` toPov pointAt,
-            fromMaybe "" $ (("radius " `mappend`) . toPov) <$> radius,
-            fromMaybe "" $ (("falloff " `mappend`) . toPov) <$> falloff,
-            fromMaybe "" $ (("tightness " `mappend`) . toPov) <$> tightness
+            maybeToPovWithName "radius" radius,
+            maybeToPovWithName "falloff" falloff,
+            maybeToPovWithName "tightness" tightness
             ]
     toPov CylinderLight{..}
         = join [
             "cylinder",
             "point_at " `mappend` toPov pointAt,
-            fromMaybe "" $ (("radius " `mappend`) . toPov) <$> radius,
-            fromMaybe "" $ (("falloff " `mappend`) . toPov) <$> falloff,
-            fromMaybe "" $ (("tightness " `mappend`) . toPov) <$> tightness
+            maybeToPovWithName "radius" radius,
+            maybeToPovWithName "falloff" falloff,
+            maybeToPovWithName "tightness" tightness
             ]
     toPov ParallelLight{..}
         = join [
@@ -69,7 +69,7 @@ instance Povray LightKind where
             "area_light " `mappend` toPov axis0 `mappend` ", "
                 `mappend` toPov axis1 `mappend` ", "
                 `mappend` toPov size0 `mappend` ", " `mappend` toPov size1,
-            fromMaybe "" $ (("adaptive " `mappend`) . toPov) <$> adaptive,
+            maybeToPovWithName "adaptive" adaptive,
             if jitter then "jitter" else "",
             if circular then "circular" else "",
             if orient then "orient" else ""

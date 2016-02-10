@@ -14,6 +14,10 @@ class Povray a where
 maybeToPov :: Povray a => Maybe a -> Str
 maybeToPov = fromMaybe "" . liftM toPov
 
+maybeToPovWithName :: Povray a => Str -> Maybe a -> Str
+maybeToPovWithName name o = fromMaybe "" $ ((name' `mappend`) . toPov) <$> o
+    where name' = name `mappend` " "
+
 formComment :: Str -> Str
 formComment c = let cs = lines c in
                 if length cs == 1 then "// " `mappend` c

@@ -16,8 +16,8 @@ instance Povray Camera where
     toPov (Camera loc at ang sky) = join [
         "camera {",
         "location " `mappend` toPov loc,
-        fromMaybe "" $ (("angle " `mappend`) . toPov) <$> ang,
-        fromMaybe "" $ (("sky " `mappend`) . toPov) <$> sky,
+        maybeToPovWithName "angle" ang,
+        maybeToPovWithName "sky" sky,
         "look_at " `mappend` toPov at,
         "}"
         ]
