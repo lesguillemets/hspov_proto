@@ -20,4 +20,5 @@ formComment c = let cs = lines c in
                                   else "/*\n" `mappend` c `mappend` "\n*/"
 
 instance Povray Double where toPov = show
+instance Povray Int where toPov = show
 instance Povray [Char] where toPov = show
