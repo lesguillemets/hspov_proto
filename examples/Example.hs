@@ -45,12 +45,15 @@ glassSp = Sphere (negate v) 2 (emptyModifier {_material=Just mGlass})
 camera :: Camera
 camera = Camera (V 2 9 10) o Nothing (Just (V 0 0.1 0))
 
+spotLight :: LightKind
+spotLight = Spotlight o (Just 18) (Just 20) Nothing
 lights :: [Light]
 lights = [
-    Light (V 100 100 (-100)) (RGB (V 1.2 1.2 1.2)),
-    Light (V 0 10 (-120)) (RGB (V 0.3 0.3 0.3))
+    Light (V 100 100 (-100)) (RGB (V 0.2 0.2 0.2)) Nothing,
+    Light (V 0 10 (-120)) (RGB (V 0.3 0.3 0.3)) Nothing,
+    Light (V 10 10 10) (RGB (V 0.8 1.5 0.8)) (Just spotLight)
     ]
-          
+
 main = do
     include "colors.inc"
     include "textures.inc"
