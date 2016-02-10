@@ -4,7 +4,7 @@ import Data.Povray.Types
 import Data.Povray.Camera
 import Data.Povray.Colour
 import Data.Povray.Light
-import Data.Povray.Objects
+import Data.Povray.Object
 import Data.Povray.ObjectModifiers
 import Data.Povray.Pigment
 import Data.Povray.Material

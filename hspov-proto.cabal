@@ -26,7 +26,7 @@ library
                      , Data.Povray.Light
                      , Data.Povray.Material
                      , Data.Povray.Pigment
-                     , Data.Povray.Objects
+                     , Data.Povray.Object
                      , Data.Povray.ObjectModifiers
                      , Data.Povray.Texture
                      , Data.Povray.Transformation

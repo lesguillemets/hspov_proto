@@ -1,7 +1,7 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE DisambiguateRecordFields #-}
 -- TODO : http://www.povray.org/documentation/3.7.0/r3_4.html#r3_4_5
-module Data.Povray.Objects where
+module Data.Povray.Object where
 
 import Data.Povray.Base
 import Data.Povray.Types
