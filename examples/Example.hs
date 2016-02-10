@@ -11,6 +11,9 @@ import Data.Povray.Material
 import Data.Povray.Texture
 import Data.Povray.Transformation
 
+import Data.Povray.Photon
+import Data.Povray.Settings
+
 o :: Vect
 o = V 0 0 0
 v :: Vect
@@ -40,7 +43,7 @@ mGlass :: Material
 mGlass = NamedMaterial "M_Glass"
 
 glassSp :: Object
-glassSp = Sphere (negate v) 2 (emptyModifier {_material=Just mGlass})
+glassSp = Sphere (V (-2) 3 (-2)) 2 (emptyModifier {_material=Just mGlass})
 
 camera :: Camera
 camera = Camera (V 2 9 10) o Nothing (Just (V 0 0.1 0))
@@ -54,10 +57,19 @@ lights = [
     Light (V 10 10 10) (RGB (V 0.8 1.5 0.8)) (Just spotLight)
     ]
 
+ePhoton :: Photon
+ePhoton = emptyPhoton {photonSpacing = Just 0.02}
+eSetting :: GlobalSetting
+eSetting = emptyGlobalSetting {
+    photon = Just ePhoton,
+    maxIntersections=Just 128
+}
+
 main = do
     include "colors.inc"
     include "textures.inc"
     include "glass.inc"
+    put eSetting
     put camera
     put eFloor
     put box
