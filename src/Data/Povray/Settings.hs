@@ -25,7 +25,7 @@ data GlobalSetting = GlobalSetting {
 }
 
 emptyGlobalSetting :: GlobalSetting
-emptyGlobalSetting = GlobalSetting Nothing Nothing
+emptyGlobalSetting = GlobalSetting Nothing (Just 1.0) -- assumedGamma
                                    Nothing Nothing
                                    Nothing Nothing Nothing
 
