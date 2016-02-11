@@ -14,9 +14,10 @@ data Transformation = Transformation {
 emptyTransformation :: Transformation
 emptyTransformation = Transformation Nothing Nothing Nothing
 
+-- FIXME : Order
 instance Povray Transformation where
     toPov Transformation{..} = join[
+        maybeToPovWithName "translate" _translate,
         maybeToPovWithName "rotate" _rotate,
-        maybeToPovWithName "scale" _scale,
-        maybeToPovWithName "translate" _translate
+        maybeToPovWithName "scale" _scale
         ]
