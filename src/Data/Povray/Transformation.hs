@@ -1,13 +1,22 @@
+{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE DisambiguateRecordFields #-}
 module Data.Povray.Transformation where
 
 import Data.Povray.Base
 import Data.Povray.Types
 
-data Transformation = Rotate Vect
-                    | Scale Vect
-                    | Translate Vect
+data Transformation = Transformation {
+    _rotate :: Maybe Vect,
+    _scale :: Maybe Vect,
+    _translate :: Maybe Vect
+}
+
+emptyTransformation :: Transformation
+emptyTransformation = Transformation Nothing Nothing Nothing
 
 instance Povray Transformation where
-    toPov (Rotate v) = "rotate " `mappend` toPov v
-    toPov (Scale v) = "scale " `mappend` toPov v
-    toPov (Translate v) = "translate " `mappend` toPov v
+    toPov Transformation{..} = join[
+        maybeToPovWithName "rotate" _rotate,
+        maybeToPovWithName "scale" _scale,
+        maybeToPovWithName "translate" _translate
+        ]
